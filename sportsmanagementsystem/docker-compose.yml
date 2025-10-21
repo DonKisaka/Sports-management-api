@@ -1,0 +1,39 @@
+services:
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: sports_complex_db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=sportuser
+      - POSTGRES_PASSWORD=sportpass
+      - POSTGRES_DB=sports_complex
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - sports-network
+
+  sports-app:
+    build: .
+    container_name: sports_complex_app
+    restart: unless-stopped
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/sports_complex
+      - SPRING_DATASOURCE_USERNAME=sportuser
+      - SPRING_DATASOURCE_PASSWORD=sportpass
+    depends_on:
+      - postgres-db
+    networks:
+      - sports-network
+
+
+
+volumes:
+  postgres-data:
+
+networks:
+  sports-network:
+    driver: bridge
