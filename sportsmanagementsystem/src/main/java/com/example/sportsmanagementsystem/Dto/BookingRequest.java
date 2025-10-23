@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record BookingRequest(
         @NotNull(message = "Sport field id must not be null")
@@ -21,8 +21,8 @@ public record BookingRequest(
         String clientEmail,
 
         @NotNull(message = "Booking date must not be null")
-        LocalDateTime startDateTime,
+        LocalTime startTime,
 
         @NotNull(message = "End date time must not be null")
-        LocalDateTime endDateTime
+        LocalTime endTime
 ) {}
