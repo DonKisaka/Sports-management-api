@@ -1,15 +1,18 @@
 package com.example.sportsmanagementsystem.Dto;
 
+import com.example.sportsmanagementsystem.model.LocationType;
+import com.example.sportsmanagementsystem.model.SportType;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public record SportFieldDto(
+public record SportFieldResponse(
         Long Id,
         String name,
-        String sportType,
-        String locationType,
+        SportType sportType,
+        LocationType locationType,
         BigDecimal pricePerHour,
         Boolean active,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
-) {}
+){}
