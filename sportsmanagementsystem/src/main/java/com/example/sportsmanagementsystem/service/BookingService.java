@@ -85,7 +85,8 @@ public class BookingService {
 
     @Transactional
     public BookingResponse updateBooking(Long bookingId, BookingRequest dto) {
-        Booking booking = bookingRepository.findById(bookingId)
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Booking booking = bookingRepository.findByIdAndUserEmail(bookingId, username)
                 .orElseThrow(() -> new IllegalArgumentException("Booking not found"));
 
         if (booking.getStatus() == BookingStatus.CONFIRMED) {
@@ -102,7 +103,7 @@ public class BookingService {
     @Transactional
     public void cancelBooking(Long bookingId) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Booking booking = bookingRepository.findById(bookingId)
+        Booking booking = bookingRepository.findByIdAndUserEmail(bookingId, username)
                 .orElseThrow(() -> new IllegalArgumentException("Booking not found"));
 
         if (booking.getStatus() == BookingStatus.CONFIRMED || booking.getStatus() == BookingStatus.PENDING) {
