@@ -1,7 +1,7 @@
 package com.example.sportsmanagementsystem.model;
 
 public enum SportType {
-    SOCCER,
+    FOOTBALL,
     BASKETBALL,
     TENNIS,
     VOLLEYBALL,
