@@ -28,36 +28,34 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{bookingId}")
     public ResponseEntity<BookingResponse> getBookingById(
-            @PathVariable Long id
+            @PathVariable Long bookingId
     ) {
-        BookingResponse response = bookingService.getBookingById(id);
+        BookingResponse response = bookingService.getBookingById(bookingId);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<BookingResponse>> getBookingsForUser(
-            @PathVariable Long id
-    ) {
+    @GetMapping("/my")
+    public ResponseEntity<List<BookingResponse>> getMyBookings() {
         List<BookingResponse> response = bookingService.getMyBookings();
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/field/{id}")
+    @GetMapping("/field/{fieldId}")
     public ResponseEntity<List<BookingResponse>> getBookingsForField(
-            @PathVariable Long id
+            @PathVariable Long fieldId
     ) {
-        List<BookingResponse> response = bookingService.getBookingsForField(id);
+        List<BookingResponse> response = bookingService.getBookingsForField(fieldId);
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{bookingId}")
     public ResponseEntity<BookingResponse> updateBooking(
-            @PathVariable Long id,
+            @PathVariable Long bookingId,
             @Valid @RequestBody BookingRequest dto
     ) {
-        BookingResponse response = bookingService.updateBooking(id, dto);
+        BookingResponse response = bookingService.updateBooking(bookingId, dto);
         return ResponseEntity.ok(response);
     }
 
