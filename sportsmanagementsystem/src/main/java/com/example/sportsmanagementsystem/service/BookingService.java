@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -43,10 +43,10 @@ public class BookingService {
         SportField sportField = sportRepository.findById(dto.sportFieldId())
                 .orElseThrow(() -> new IllegalArgumentException("Sport field not found"));
 
-        LocalTime start = dto.startTime();
-        LocalTime end = dto.endTime();
+        LocalDateTime start = dto.startDateTime();
+        LocalDateTime end = dto.endDateTime();
 
-        if (bookingRepository.hasOverlappingBooking(dto.sportFieldId(), start, end)) {
+        if (bookingRepository.hasOverlappingBooking(dto.sportFieldId(), start, end )) {
             throw new IllegalArgumentException("The requested time slot is already booked");
         }
 
@@ -90,10 +90,10 @@ public class BookingService {
                 .orElseThrow(() -> new IllegalArgumentException("Booking not found"));
 
         if (booking.getStatus() == BookingStatus.CONFIRMED) {
-            booking.setStartTime(dto.startTime());
-            booking.setEndTime(dto.endTime());
+            booking.setStartDateTime(dto.startDateTime());
+            booking.setEndDateTime(dto.endDateTime());
 
-            long hours = Duration.between(dto.startTime(), dto.endTime()).toHours();
+            long hours = Duration.between(dto.startDateTime(), dto.endDateTime()).toHours();
             BigDecimal totalPrice = booking.getSportField().getPricePerHour().multiply(BigDecimal.valueOf(hours));
             booking.setTotalPrice(totalPrice);
         }
