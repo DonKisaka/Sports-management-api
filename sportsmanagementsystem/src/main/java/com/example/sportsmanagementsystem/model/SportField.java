@@ -54,11 +54,4 @@ public class SportField {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public boolean isOutdoor() {
-        return LocationType.OUTDOOR.equals(locationType);
-    }
-
-    public boolean isIndoor() {
-        return LocationType.INDOOR.equals(locationType);
-    }
 }

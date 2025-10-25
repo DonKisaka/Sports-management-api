@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -49,17 +50,13 @@ public class Booking {
     @Column(nullable = false, name = "client_email")
     private String clientEmail;
 
-    @NotNull(message = "Booking date is required")
-    @Column(nullable = false, name = "booking_date")
-    private LocalDateTime bookingDate;
+    @NotNull(message = "Start date and time is required")
+    @Column(nullable = false, name = "start_date_time")
+    private LocalDateTime startDateTime;
 
-    @NotNull(message = "Start time is required")
-    @Column(nullable = false, name = "start_time")
-    private LocalTime startTime;
-
-    @NotNull(message = "End time is required")
-    @Column(nullable = false, name = "end_time")
-    private LocalTime endTime;
+    @NotNull(message = "End date and  time is required")
+    @Column(nullable = false, name = "end_date_time")
+    private LocalDateTime endDateTime;
 
     @NotNull(message = "Total price is required")
     @Column(nullable = false, precision = 10, scale = 2, name = "total_price")
