@@ -19,7 +19,7 @@ services:
     container_name: sports_complex_app
     restart: unless-stopped
     ports:
-      - "8085:8085"
+      - "8080:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/sports_complex
       - SPRING_DATASOURCE_USERNAME=sportuser

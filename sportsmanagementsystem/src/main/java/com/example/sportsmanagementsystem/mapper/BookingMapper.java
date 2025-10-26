@@ -17,7 +17,7 @@ public interface BookingMapper {
     Booking toEntity(BookingRequest bookingRequest);
 
     @Mapping(source = "sportField.name", target= "sportFieldName")
-    @Mapping(source = "status", target = "status", qualifiedByName = "mapStatusToString")
+    @Mapping(source = "status", target = "status")
     BookingResponse toDto(Booking booking);
 
     List<BookingResponse> toDtoList(List<Booking> bookings);

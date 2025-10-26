@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public record BookingRequest(
         @NotNull(message = "Sport field id must not be null")
